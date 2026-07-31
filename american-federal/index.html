@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>American Federal — Gambit Applications</title>
+<meta name="description" content="Gambit Applications extension for American Federal: live tools, automation map, schedules, and where everything lives." />
+<meta name="robots" content="noindex,nofollow" />
+<meta property="og:title" content="American Federal — Gambit Applications" />
+<meta property="og:description" content="Ops hub for American Federal systems built by Gambit Applications." />
+<meta property="og:url" content="https://americanfederal.gambitapplications.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --paper:#faf7f1; --paper2:#f2ede3; --ink:#16130d; --ink2:#5d5749;
+  --blue:#2f54ff; --orange:#ff5c35; --lime:#c8f24f; --mint:#9be8c8;
+  --card:#ffffff; --line:#e4ddcf;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:Manrope,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{width:min(1100px,calc(100% - 40px));margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;letter-spacing:-.02em;font-weight:600}
+body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.4;pointer-events:none;background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:26px 26px}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(250,247,241,.92);backdrop-filter:blur(14px);border-bottom:2px solid var(--ink)}
+.nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}
+.logo{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:Fraunces;font-weight:700;background:var(--blue);color:#fff;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{font-size:.86rem;font-weight:700;color:var(--ink2);text-decoration:none;padding:8px 11px;border-radius:999px}
+.nav-links a:hover{background:var(--paper2);color:var(--ink)}
+.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--ink);border-radius:999px;padding:6px 10px;background:var(--lime);font-weight:700}
+
+.hero{padding:56px 0 28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:18px}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--orange)}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin-bottom:14px;max-width:16ch}
+.sub{font-size:1.05rem;color:var(--ink2);max-width:640px;margin-bottom:22px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.chip{border:2px solid var(--ink);border-radius:999px;padding:7px 12px;background:var(--card);font-size:.82rem;font-weight:700}
+.chip.live{background:var(--mint)}
+.chip.warn{background:#ffe7c2}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0 10px}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.nav-links{display:none}}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:18px 18px 16px;box-shadow:3px 3px 0 var(--ink)}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card p{color:var(--ink2);font-size:.92rem}
+.card a.btnish{display:inline-flex;margin-top:12px;font-weight:800;font-size:.9rem;text-decoration:none;border-bottom:2px solid var(--blue);padding-bottom:1px}
+.card a.btnish:hover{color:var(--blue)}
+
+section{padding:34px 0}
+section h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:8px}
+.lead{color:var(--ink2);margin-bottom:18px;max-width:70ch}
+table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:2px solid var(--ink);border-radius:16px;overflow:hidden;box-shadow:3px 3px 0 var(--ink);font-size:.9rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--paper2);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);color:var(--ink2)}
+tr:last-child td{border-bottom:0}
+td strong{font-weight:800}
+.mono{font-family:var(--mono);font-size:.78rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:999px;border:1.5px solid var(--ink);background:var(--lime)}
+.tag.soft{background:var(--paper2)}
+.tag.blue{background:#e8ecff}
+.tag.orange{background:#ffe4dc}
+
+.flow{display:grid;gap:10px;margin-top:12px}
+.flow-row{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:start;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:12px 14px}
+.flow-row b{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+@media (max-width:700px){.flow-row{grid-template-columns:1fr}}
+
+.note{margin-top:14px;padding:14px 16px;border:2px dashed var(--ink);border-radius:14px;background:rgba(200,242,79,.25);font-size:.92rem}
+.footer{border-top:2px solid var(--ink);padding:28px 0 48px;margin-top:20px;color:var(--ink2);font-size:.9rem}
+.footer a{font-weight:800}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.toc a{text-decoration:none;border:2px solid var(--ink);border-radius:999px;padding:8px 12px;background:var(--card);font-size:.82rem;font-weight:700}
+.toc a:hover{background:var(--lime)}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="https://gambitapplications.com">
+      <span class="logo">G</span>
+      <span>Gambit Applications</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#live">Live tools</a>
+      <a href="#stack">Day-to-day stack</a>
+      <a href="#syncs">Automatic syncs</a>
+      <a href="#studio">Studio jobs</a>
+      <a href="#hosts">Where it lives</a>
+    </nav>
+    <span class="pill">American Federal</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Gambit extension · client ops hub</div>
+    <h1>American Federal</h1>
+    <p class="sub">
+      Everything Gambit built and wires for American Federal Benefits Consultants —
+      live products, automatic data flows, schedules, and hosts — so nothing gets lost.
+    </p>
+    <div class="meta">
+      <span class="chip live">Inventory verified 2026-07-30</span>
+      <span class="chip">Brand software: Gambit</span>
+      <span class="chip">Ops brand: American Federal</span>
+      <span class="chip warn">No secrets on this page</span>
+    </div>
+    <div class="toc">
+      <a href="https://fedcalculator.com">Federal Calculator</a>
+      <a href="https://agecalculator.gambitapplications.com">Age Calculator</a>
+      <a href="https://scripts.gambitapplications.com">Call Script Hub</a>
+      <a href="https://seminargrid.gambitapplications.com">Seminar Grid</a>
+      <a href="https://gambitapplications.com">Gambit home</a>
+    </div>
+  </section>
+
+  <section id="live">
+    <h2>Live tools</h2>
+    <p class="lead">Public / staff product surfaces built under Gambit for American Federal work.</p>
+    <div class="grid">
+      <article class="card">
+        <h3>Federal Calculator</h3>
+        <p>FERS / CSRS retirement projections, branded for AF client reviews. Invite-only app.</p>
+        <a class="btnish" href="https://fedcalculator.com">fedcalculator.com →</a>
+      </article>
+      <article class="card">
+        <h3>GHL Age Calculator</h3>
+        <p>Writes fractional Age from date of birth into HighLevel. Dashboard + webhook path.</p>
+        <a class="btnish" href="https://agecalculator.gambitapplications.com">agecalculator… →</a>
+      </article>
+      <article class="card">
+        <h3>Call Script Hub</h3>
+        <p>Script library for GHL embed — folders, sharing, colors for agents/assistants.</p>
+        <a class="btnish" href="https://scripts.gambitapplications.com">scripts… →</a>
+      </article>
+      <article class="card">
+        <h3>Seminar Grid</h3>
+        <p>American Federal seminar roster tool for HighLevel — event grids, embeds, roster views.</p>
+        <a class="btnish" href="https://seminargrid.gambitapplications.com">seminargrid… →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2>Day-to-day operating stack</h2>
+    <p class="lead">As of 2026-07-28: TeleDirect is the registration source. Staff live in GHL + agent Postal Rosters. HubSpot is not the daily CRM.</p>
+    <div class="flow">
+      <div class="flow-row"><b>Source</b><div>TeleDirect Seminar Edge — postal seminar registrations</div></div>
+      <div class="flow-row"><b>Router</b><div>2026 Postal Seminar Location Master (Smartsheet) — city/state/date/time → event name + agent</div></div>
+      <div class="flow-row"><b>CRM</b><div>GoHighLevel — contacts, ownership, tags, follow-up</div></div>
+      <div class="flow-row"><b>Events</b><div>GHL Events + Event Registrations (TD-linked; dual session naming supported)</div></div>
+      <div class="flow-row"><b>Ops lists</b><div>8 per-agent Postal Roster Smartsheets</div></div>
+      <div class="flow-row"><b>Background</b><div>Sheets still named “HUBSPOT” = staging/history, not frontline CRM</div></div>
+      <div class="flow-row"><b>Agents</b><div>Hermes profile <span class="mono">americanfederal</span> (Mac Studio gateway)</div></div>
+    </div>
+  </section>
+
+  <section id="syncs">
+    <h2>Automatic syncs (Railway)</h2>
+    <p class="lead">Primary data plane: Railway project <span class="mono">atlas-american-federal</span> from GitHub <span class="mono">ryanpreyes-stack/atlas-american-federal</span>. Crons are UTC; Eastern wall-clock shifts in standard time for fixed-UTC jobs.</p>
+    <table>
+      <thead>
+        <tr><th>Job</th><th>What it does</th><th>How often</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TD → staging + GHL</strong></td>
+          <td>Forward-only TeleDirect meetings → Postal Uploads staging sheet; GHL contacts + Event Registrations when flags on</td>
+          <td class="mono">3× daily<br>13/17/21 UTC<br>~9am / 1pm / 5pm ET</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Agent Postal Rosters</strong></td>
+          <td>Route TD regs into 8 agent roster sheets via Location Master (30-day window weekdays)</td>
+          <td class="mono">Mon–Fri 3× daily<br>same UTC slots</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Roster Saturday cut</strong></td>
+          <td>Tomorrow-targeted final roster snapshot before Sunday events</td>
+          <td class="mono">Sat ~8pm ET (EDT)</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Roster Sunday cuts</strong></td>
+          <td>Day-of-event final cuts (Eastern-gated)</td>
+          <td class="mono">Sun ~8am &amp; 11am ET</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Events sheet → GHL Events</strong></td>
+          <td>Create workshop events in GHL from Smartsheet (creates only)</td>
+          <td class="mono">Weekday cron service</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>Union roster → GHL</strong></td>
+          <td>Union workshop outcomes into GHL contacts</td>
+          <td class="mono">Daily ~8:30pm ET</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>AcquireUp / LeadJig paths</strong></td>
+          <td>Vendor federal/union lead + SFTP paths (separate from TD CSR mental model)</td>
+          <td class="mono">Daily vendor jobs + always-on SFTP</td>
+          <td><span class="tag soft">Separate services</span></td>
+        </tr>
+        <tr>
+          <td><strong>Always-on apps</strong></td>
+          <td>Script Hub, Seminar Grid, Age Calculator, Federal Calculator, AF ops hub</td>
+          <td class="mono">Continuous</td>
+          <td><span class="tag">Live</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">Agent rosters map to: Patricia Tenney, Tony Ryan, Sheila Hernandez Ochoa, Josh Butler, Rayna Reyes, Scot Thompson, Eric Little, Ryan Reyes. Sheet IDs live only in Railway env — not on this page.</div>
+  </section>
+
+  <section id="studio">
+    <h2>Mac Studio jobs (LaunchAgents)</h2>
+    <p class="lead">Durable local automations on the AF home machine (Studio). Complements Railway.</p>
+    <table>
+      <thead>
+        <tr><th>Job</th><th>Cadence (local)</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Age Calculator backfill</strong></td><td class="mono">Every 5 min</td><td>Supervisor for GHL Age field backfill queue</td></tr>
+        <tr><td><strong>Age daily reconciliation</strong></td><td class="mono">02:15</td><td>Daily Age field reconcile pass</td></tr>
+        <tr><td><strong>Calendar → GHL</strong></td><td class="mono">07:00 &amp; 10:00</td><td>Ryan calendar into GHL</td></tr>
+        <tr><td><strong>AcquireUp daily report</strong></td><td class="mono">11:15</td><td>Vendor path report</td></tr>
+        <tr><td><strong>TeleDirect daily report</strong></td><td class="mono">Mon–Fri 17:20; Sun 11:10</td><td>TD ops report</td></tr>
+        <tr><td><strong>Zoom → vault transcripts</strong></td><td class="mono">20:00</td><td>Transcript archive sync</td></tr>
+        <tr><td><strong>Hermes gateway <span class="mono">americanfederal</span></strong></td><td class="mono">Always on</td><td>AF-dedicated agent gateway</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="projects">
+    <h2>Projects &amp; where code lives</h2>
+    <table>
+      <thead>
+        <tr><th>Project</th><th>Vault / code</th><th>Host</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Atlas American Federal monorepo</strong></td>
+          <td class="mono">Projects/Atlas-American-Federal/<br>code/ → GitHub main</td>
+          <td><span class="tag blue">Railway</span> atlas-american-federal</td>
+        </tr>
+        <tr>
+          <td><strong>Federal Calculator</strong></td>
+          <td class="mono">Projects/Federal-Calculator/</td>
+          <td><span class="tag blue">Railway</span> + Cloudflare DNS · fedcalculator.com</td>
+        </tr>
+        <tr>
+          <td><strong>GHL Age Calculator</strong></td>
+          <td class="mono">Projects/Age-Calculator/code/</td>
+          <td><span class="tag blue">Railway</span> · agecalculator.gambitapplications.com<br><span class="tag orange">Studio</span> LaunchAgents</td>
+        </tr>
+        <tr>
+          <td><strong>Call Script Hub</strong></td>
+          <td class="mono">AAF code/american-federal-script-hub/</td>
+          <td><span class="tag blue">Railway</span> · scripts.gambitapplications.com</td>
+        </tr>
+        <tr>
+          <td><strong>Seminar Grid</strong></td>
+          <td class="mono">Gambit app / seminar-roster tool</td>
+          <td><span class="tag blue">Railway</span> · seminargrid.gambitapplications.com<br>GHL embed <span class="mono">?embed=1&amp;locationId=</span></td>
+        </tr>
+        <tr>
+          <td><strong>AF University / Thinkific video</strong></td>
+          <td class="mono">Atlas-Video-Pipeline/brands/american-federal-university/</td>
+          <td>Thinkific + Spark pipeline (paused watcher)</td>
+        </tr>
+        <tr>
+          <td><strong>Vault inventory (source of truth)</strong></td>
+          <td class="mono">Projects/Gambit Applications/American Federal/</td>
+          <td>Obsidian / Syncthing mesh</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="hosts">
+    <h2>Hosts &amp; domains</h2>
+    <table>
+      <thead>
+        <tr><th>Hostname / place</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono"><strong>americanfederal.gambitapplications.com</strong></td><td>This ops hub (Gambit Pages + Cloudflare)</td></tr>
+        <tr><td class="mono">fedcalculator.com</td><td>Federal Calculator app</td></tr>
+        <tr><td class="mono">agecalculator.gambitapplications.com</td><td>Age Calculator</td></tr>
+        <tr><td class="mono">scripts.gambitapplications.com</td><td>Call Script Hub</td></tr>
+        <tr><td class="mono">seminargrid.gambitapplications.com</td><td>Seminar Grid (GHL roster tool)</td></tr>
+        <tr><td class="mono">gambitapplications.com</td><td>Gambit marketing site</td></tr>
+        <tr><td><strong>Railway</strong></td><td>Most crons + always-on AF apps</td></tr>
+        <tr><td><strong>Mac Studio</strong></td><td>LaunchAgents, Hermes AF gateway, some reports</td></tr>
+        <tr><td><strong>Cloudflare</strong></td><td>DNS for Gambit + related hostnames</td></tr>
+        <tr><td><strong>GitHub</strong></td><td>Deployable source of truth</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      Full internal detail (LaunchAgent labels, Railway toml names, vault deep links) stays in Obsidian:
+      <span class="mono">Projects/Gambit Applications/American Federal/Full System Inventory.md</span>
+    </div>
+  </section>
+
+  <section id="event-driven">
+    <h2>Event-driven (no fixed cron)</h2>
+    <table>
+      <thead><tr><th>Trigger</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td>GHL ContactUpdate (DOB)</td><td>Age Calculator webhook path</td></tr>
+        <tr><td>GHL Event Registration associate</td><td>upcoming-events webhook linkage</td></tr>
+        <tr><td>Push to GitHub <span class="mono">main</span></td><td>Railway redeploy</td></tr>
+        <tr><td>Location Master sheet edits</td><td>Changes routing truth for next roster/TD runs</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>Gambit Applications</strong> · American Federal extension</p>
+    <p style="margin-top:6px">Built so Ryan never has to remember the map from scratch.
+      <a href="https://gambitapplications.com">gambitapplications.com</a>
+      · Page path also:
+      <a href="https://gambitapplications.com/american-federal/">/american-federal/</a>
+    </p>
+    <p style="margin-top:10px;font-size:.82rem">No passwords, tokens, or sheet IDs on this page. Update the vault inventory when jobs change, then redeploy this site.</p>
+  </div>
+</footer>
+</body>
+</html>
