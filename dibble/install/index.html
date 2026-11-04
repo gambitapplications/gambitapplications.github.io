@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Install Dibble on Android — Gambit Applications</title>
+<meta name="description" content="How to download and install Dibble on Android. Not available yet." />
+<meta property="og:title" content="Install Dibble on Android" />
+<meta property="og:url" content="https://gambitapplications.com/dibble/install/" />
+<link rel="stylesheet" href="fonts/fonts.css?v=20261103" />
+<style>
+:root{
+  --paper:#faf7f1; --paper2:#f2ede3; --ink:#16130d; --ink2:#5d5749;
+  --blue:#2f54ff; --orange:#ff5c35; --lime:#c8f24f;
+  --card:#ffffff; --line:#e4ddcf;
+  --d-accent:#2B5CFF;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:Manrope,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(820px,calc(100% - 40px));margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;letter-spacing:-.02em;font-weight:600}
+body:before{content:"";position:fixed;inset:0;z-index:-1;opacity:.4;pointer-events:none;background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:26px 26px}
+
+.nav{position:sticky;top:0;z-index:40;background:rgba(250,247,241,.92);backdrop-filter:blur(14px);border-bottom:2px solid var(--ink)}
+.nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px;width:min(1100px,calc(100% - 40px));margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800}
+.logo{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:Fraunces;font-weight:700;background:var(--blue);color:#fff;border:2px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+.brand img.pet{width:40px;height:40px;object-fit:contain;display:block}
+.mascot{width:min(200px,50vw);height:auto;display:block;margin:0 0 8px -6px}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:.86rem;font-weight:700;color:var(--ink2);text-decoration:none;padding:8px 11px;border-radius:999px}
+.nav-links a:hover{background:var(--paper2);color:var(--ink)}
+
+.hero{padding:56px 0 28px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-bottom:18px}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--orange)}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.05;margin-bottom:14px;max-width:14ch}
+.sub{font-size:1.08rem;color:var(--ink2);max-width:42ch;margin-bottom:22px}
+.chip{display:inline-block;border:2px solid var(--ink);border-radius:999px;padding:6px 12px;background:var(--lime);font-weight:800;font-size:.82rem;margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 24px;border-radius:999px;text-decoration:none;font-weight:800;border:2px solid var(--ink);background:var(--card);color:var(--ink)}
+.btn.primary{background:var(--blue);color:#fff;box-shadow:4px 4px 0 var(--ink)}
+.btn[disabled],.btn.dead{opacity:.45;pointer-events:none;box-shadow:none}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 22px}
+.mode{border:2px solid var(--ink);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:800;font-size:.86rem}
+.mode.on{background:var(--lime)}
+
+.step{
+  display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;
+  background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:16px 18px;box-shadow:3px 3px 0 var(--ink);margin-bottom:10px;width:100%;text-align:left;
+}
+.step.on{background:var(--lime)}
+.step b{font-family:Fraunces;font-size:1.45rem;color:var(--blue);line-height:1}
+.step strong{display:block;font-size:1.02rem}
+.step p{color:var(--ink2);font-size:.92rem;margin-top:4px}
+
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+h2{font-size:1.6rem;margin:28px 0 12px}
+.note{border:2px dashed var(--ink);border-radius:16px;padding:14px 16px;background:rgba(200,242,79,.28);font-weight:700;margin-bottom:18px}
+
+footer{padding:48px 0 60px;color:var(--ink2);border-top:2px solid var(--ink);margin-top:40px}
+footer a{font-weight:700;text-decoration:none}
+@media(max-width:700px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a class="brand" href="/dibble/"><img class="pet" src="../dibble.png" alt="Dibble">Dibble</a>
+  <div class="nav-links">
+    <a href="/dibble/">Product</a>
+    <a href="/dibble/install/">Android</a>
+    <a href="/dibble/#demo">Walkthrough</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <img class="mascot" src="../dibble.png" alt="Dibble">
+  <div class="eyebrow">Android</div>
+  <div class="chip">Not ready yet</div>
+  <h1>Download and install</h1>
+  <p class="sub">Dibble is an Android app. This is the install path. The file is not posted yet.</p>
+  <div class="actions">
+    <a class="btn primary dead" aria-disabled="true">Get Dibble</a>
+    <a class="btn" href="/dibble/#demo">Try the walkthrough</a>
+  </div>
+  <div class="modes">
+    <button class="mode on" type="button" id="tabPlay">Play</button>
+    <button class="mode" type="button" id="tabApk">APK</button>
+  </div>
+  <div class="note" id="banner">When Play is live, Get Dibble opens the listing. Until then the button stays off.</div>
+  <div id="steps"></div>
+  <div class="controls">
+    <button class="btn" type="button" id="back">Back</button>
+    <button class="btn primary" type="button" id="next">Next</button>
+  </div>
+</div></header>
+
+<footer><div class="wrap">
+  <a href="/dibble/">Dibble</a>
+  ·
+  <a href="/">Gambit Applications</a>
+</div></footer>
+
+<script>
+const play = [
+  {t:'Use an Android phone', p:'Phone or tablet. Not iPhone.'},
+  {t:'Open this page on the phone', p:'Chrome or the phone browser.'},
+  {t:'Tap Get Dibble', p:'That opens Play. The listing is not live yet.'},
+  {t:'Tap Install', p:'Wait until Play says Open.'},
+  {t:'Open Dibble', p:'Meet Dibble, or Skip. You land in Chat.'}
+];
+const apk = [
+  {t:'Use an Android phone', p:'Phone or tablet. Not iPhone.'},
+  {t:'Download the APK', p:'The file is not posted yet. When it is, it lands on this page.'},
+  {t:'Open the download', p:'Chrome will ask to install.'},
+  {t:'Allow this source', p:'Settings → Install unknown apps → Chrome (or Files) → Allow.'},
+  {t:'Tap Install, then Open', p:'Meet Dibble, or Skip. You land in Chat.'}
+];
+
+let path = 'play';
+let i = 0;
+const box = document.getElementById('steps');
+const banner = document.getElementById('banner');
+
+function list(){ return path === 'play' ? play : apk; }
+function paint(){
+  const rows = list();
+  if(i >= rows.length) i = rows.length - 1;
+  if(i < 0) i = 0;
+  box.innerHTML = rows.map((r,n) => `
+    <button class="step${n===i?' on':''}" type="button" data-i="${n}">
+      <b>${String(n+1).padStart(2,'0')}</b>
+      <div><strong>${r.t}</strong><p>${r.p}</p></div>
+    </button>`).join('');
+  box.querySelectorAll('[data-i]').forEach(b => b.onclick = () => { i = Number(b.dataset.i); paint(); });
+  document.getElementById('tabPlay').classList.toggle('on', path==='play');
+  document.getElementById('tabApk').classList.toggle('on', path==='apk');
+  banner.textContent = path==='play'
+    ? 'When Play is live, Get Dibble opens the listing. Until then the button stays off.'
+    : 'APK install needs “unknown apps” for the browser that downloaded the file.';
+}
+document.getElementById('tabPlay').onclick = () => { path='play'; i=0; paint(); };
+document.getElementById('tabApk').onclick = () => { path='apk'; i=0; paint(); };
+document.getElementById('next').onclick = () => { i = Math.min(i+1, list().length-1); paint(); };
+document.getElementById('back').onclick = () => { i = Math.max(i-1, 0); paint(); };
+paint();
+</script>
+</body>
+</html>
